@@ -6,7 +6,7 @@ $('#submit').click(() => {
 
     $.ajax({
         method: "POST",
-        url: "./imc-back.php",
+        url: "./index.php",
         data: { value01, value02 }
 
     }).done(data => {
