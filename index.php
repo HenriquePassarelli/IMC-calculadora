@@ -51,7 +51,7 @@
             </tr>
             <tr id="normal">
                 <td>Peso Normal</td>
-                <td>18,5 - 25,9</td>
+                <td>18,5 - 24,9</td>
             </tr>
             <tr id="sobrepeso">
                 <td>Sobrepeso</td>
