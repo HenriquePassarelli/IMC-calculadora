@@ -1,33 +1,11 @@
 #!/bin/bash
 
-# Build script for serving static content instead of php files
+# build.sh - PHP to static file generator
 DEST="./public_html"
-html=".html"
 
-# Create destination folder
-mkdir -p "$DEST/"
-
-# Execute all php files and save them as html
-for f in *.php; 
-do
-    php $f | sed 's:\(<a.*href=".*\)\.php\(".*</a>\):\1\.html\2:g' > "$DEST/${f/.php/$html}";
-    echo "Processing $f into ${f/.php/$html}..";
+# Run PHP on gig folders and output HTML ready for static hosting
+find . -maxdepth 1 -type d \( -name '*-????' -o -name sample \) | sed 's/.\///' | \
+while read x; do \
+    mkdir -p "$DEST/$x/" && cd "$x" && php index.php > "../$DEST/$x/index.html" && cd ../ && \
+    echo "Processed $x" ; \
 done
-
-
-#Copy all CSS files
-for f in *.css; 
-do
-    cat $f > "$DEST/$f";
-    echo "Processing $f file..";
-done
-
-
-#Copy all JS files
-for f in *.js; 
-do
-    cat $f > "$DEST/$f";
-    echo "Processing $f file..";
-done
-
-echo "Process complete." ;
